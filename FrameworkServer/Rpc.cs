@@ -382,7 +382,7 @@ namespace Org.ForgeRock.OpenICF.Framework.Remote
                 if (webSocketConnection.Equals(WebSockets.Keys.First()))
                 {
                     ControlMessageRequestFactory requestFactory = new ControlMessageRequestFactory();
-                    requestFactory.InfoLevels.Add(ControlRequest.Types.InfoLevel.CONNECTOR_INFO);
+                    requestFactory.InfoLevels.Add(ControlRequest.Types.InfoLevel.ConnectorInfo);
                     TrySubmitRequest(requestFactory);
                 }
             }

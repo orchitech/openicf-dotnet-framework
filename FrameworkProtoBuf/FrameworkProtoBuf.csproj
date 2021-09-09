@@ -56,7 +56,7 @@
   <Import Project="$(MSBuildProjectDirectory)\..\Framework.targets" />
   <ItemGroup>
     <Reference Include="Google.Protobuf">
-      <HintPath>..\packages\Google.ProtocolBuffers.3\lib\Google.Protobuf.dll</HintPath>
+      <HintPath>..\packages\Google.Protobuf.3.6.1\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -73,7 +73,7 @@
   <ItemGroup />
   <Target Name="FrameworkBeforeBuild">
       <CallTarget Targets="GenerateAssemblyInfo" />
-      <Exec Command="..\packages\Google.ProtocolBuffers.3\tools\protoc.exe -I=.\protobuf --csharp_out=. .\protobuf\CommonObjectMessages.proto .\protobuf\OperationMessages.proto .\protobuf\RPCMessages.proto" WorkingDirectory="$(MSBuildProjectDirectory)" ContinueOnError="false" />
+      <Exec Command="protoc -I=.\protobuf --csharp_out=. .\protobuf\CommonObjectMessages.proto .\protobuf\OperationMessages.proto .\protobuf\RPCMessages.proto" WorkingDirectory="$(MSBuildProjectDirectory)" ContinueOnError="false" />
   </Target>
   <Target Name="Clean">
     <Delete Files="CommonObjectMessages.cs;OperationMessages.cs;AssemblyInfo.cs;RPCMessages.cs;version.txt" />

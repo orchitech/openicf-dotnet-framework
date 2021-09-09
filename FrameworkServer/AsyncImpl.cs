@@ -2643,14 +2643,14 @@ namespace Org.ForgeRock.OpenICF.Framework.Remote
         {
             return
                 await
-                    DoUpdate(objectClass, uid, PRB.UpdateOpRequest.Types.UpdateType.REPLACE, replaceAttributes, options,
+                    DoUpdate(objectClass, uid, PRB.UpdateOpRequest.Types.UpdateType.Replace, replaceAttributes, options,
                         cancellationToken);
         }
 
         public async Task<Uid> AddAttributeValuesAsync(ObjectClass objectClass, Uid uid,
             ICollection<ConnectorAttribute> valuesToAdd, OperationOptions options, CancellationToken cancellationToken)
         {
-            return await DoUpdate(objectClass, uid, PRB.UpdateOpRequest.Types.UpdateType.ADD, valuesToAdd, options,
+            return await DoUpdate(objectClass, uid, PRB.UpdateOpRequest.Types.UpdateType.Add, valuesToAdd, options,
                 cancellationToken);
         }
 
@@ -2659,7 +2659,7 @@ namespace Org.ForgeRock.OpenICF.Framework.Remote
             CancellationToken cancellationToken)
         {
             return
-                await DoUpdate(objectClass, uid, PRB.UpdateOpRequest.Types.UpdateType.REMOVE, valuesToRemove, options,
+                await DoUpdate(objectClass, uid, PRB.UpdateOpRequest.Types.UpdateType.Remove, valuesToRemove, options,
                     cancellationToken);
         }
 
@@ -2669,7 +2669,7 @@ namespace Org.ForgeRock.OpenICF.Framework.Remote
             CancellationToken cancellationToken)
         {
             UpdateImpl.ValidateInput(objectClass, uid, replaceAttributes,
-                !PRB.UpdateOpRequest.Types.UpdateType.REPLACE.Equals(updateType));
+                !PRB.UpdateOpRequest.Types.UpdateType.Replace.Equals(updateType));
             PRB.UpdateOpRequest requestBuilder =
                 new PRB.UpdateOpRequest
                 {
@@ -2821,13 +2821,13 @@ namespace Org.ForgeRock.OpenICF.Framework.Remote
 
                 switch (requestMessage.UpdateType)
                 {
-                    case PRB.UpdateOpRequest.Types.UpdateType.REPLACE:
+                    case PRB.UpdateOpRequest.Types.UpdateType.Replace:
                         return connectorFacade.Update(objectClass, uid,
                             CollectionUtil.NewSet<Object, ConnectorAttribute>(attributes), operationOptions);
-                    case PRB.UpdateOpRequest.Types.UpdateType.ADD:
+                    case PRB.UpdateOpRequest.Types.UpdateType.Add:
                         return connectorFacade.AddAttributeValues(objectClass, uid,
                             CollectionUtil.NewSet<Object, ConnectorAttribute>(attributes), operationOptions);
-                    case PRB.UpdateOpRequest.Types.UpdateType.REMOVE:
+                    case PRB.UpdateOpRequest.Types.UpdateType.Remove:
                         return connectorFacade.RemoveAttributeValues(objectClass, uid,
                             CollectionUtil.NewSet<Object, ConnectorAttribute>(attributes), operationOptions);
                     default:

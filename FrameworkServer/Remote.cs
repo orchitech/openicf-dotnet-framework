@@ -885,12 +885,12 @@ public class AsyncRemoteLegacyConnectorInfoManager : ManagedAsyncConnectorInfoMa
 
                     switch (from.TotalPagedResultsPolicy)
                     {
-                        case PRB.SearchResult.Types.CountPolicy.EXACT:
+                        case PRB.SearchResult.Types.CountPolicy.Exact:
                             {
                                 policy = OBJ.SearchResult.CountPolicy.EXACT;
                                 break;
                             }
-                        case PRB.SearchResult.Types.CountPolicy.ESTIMATE:
+                        case PRB.SearchResult.Types.CountPolicy.Estimate:
                             {
                                 policy = OBJ.SearchResult.CountPolicy.ESTIMATE;
                                 break;
@@ -945,16 +945,16 @@ public class AsyncRemoteLegacyConnectorInfoManager : ManagedAsyncConnectorInfoMa
                     builder.Token = DeserializeMessage<OBJ.SyncToken>(from.Token);
                     switch (from.DeltaType)
                     {
-                        case Common.ProtoBuf.SyncDelta.Types.SyncDeltaType.CREATE:
+                        case Common.ProtoBuf.SyncDelta.Types.SyncDeltaType.Create:
                             builder.DeltaType = OBJ.SyncDeltaType.CREATE;
                             break;
-                        case Common.ProtoBuf.SyncDelta.Types.SyncDeltaType.CREATE_OR_UPDATE:
+                        case Common.ProtoBuf.SyncDelta.Types.SyncDeltaType.CreateOrUpdate:
                             builder.DeltaType = OBJ.SyncDeltaType.CREATE_OR_UPDATE;
                             break;
-                        case Common.ProtoBuf.SyncDelta.Types.SyncDeltaType.UPDATE:
+                        case Common.ProtoBuf.SyncDelta.Types.SyncDeltaType.Update:
                             builder.DeltaType = OBJ.SyncDeltaType.UPDATE;
                             break;
-                        case Common.ProtoBuf.SyncDelta.Types.SyncDeltaType.DELETE:
+                        case Common.ProtoBuf.SyncDelta.Types.SyncDeltaType.Delete:
                             builder.DeltaType = OBJ.SyncDeltaType.DELETE;
                             break;
                     }
@@ -1048,16 +1048,16 @@ public class AsyncRemoteLegacyConnectorInfoManager : ManagedAsyncConnectorInfoMa
                     {
                         case OBJ.SearchResult.CountPolicy.EXACT:
                             {
-                                policy = PRB.SearchResult.Types.CountPolicy.EXACT;
+                                policy = PRB.SearchResult.Types.CountPolicy.Exact;
                                 break;
                             }
                         case OBJ.SearchResult.CountPolicy.ESTIMATE:
                             {
-                                policy = PRB.SearchResult.Types.CountPolicy.ESTIMATE;
+                                policy = PRB.SearchResult.Types.CountPolicy.Estimate;
                                 break;
                             }
                         default:
-                            policy = PRB.SearchResult.Types.CountPolicy.NONE;
+                            policy = PRB.SearchResult.Types.CountPolicy.None;
                             break;
                     }
 
@@ -1128,19 +1128,19 @@ public class AsyncRemoteLegacyConnectorInfoManager : ManagedAsyncConnectorInfoMa
                     {
                         case OBJ.SyncDeltaType.CREATE:
                             builder.DeltaType =
-                                Org.ForgeRock.OpenICF.Common.ProtoBuf.SyncDelta.Types.SyncDeltaType.CREATE;
+                                Org.ForgeRock.OpenICF.Common.ProtoBuf.SyncDelta.Types.SyncDeltaType.Create;
                             break;
                         case OBJ.SyncDeltaType.CREATE_OR_UPDATE:
                             builder.DeltaType =
-                                Org.ForgeRock.OpenICF.Common.ProtoBuf.SyncDelta.Types.SyncDeltaType.CREATE_OR_UPDATE;
+                                Org.ForgeRock.OpenICF.Common.ProtoBuf.SyncDelta.Types.SyncDeltaType.CreateOrUpdate;
                             break;
                         case OBJ.SyncDeltaType.UPDATE:
                             builder.DeltaType =
-                                Org.ForgeRock.OpenICF.Common.ProtoBuf.SyncDelta.Types.SyncDeltaType.UPDATE;
+                                Org.ForgeRock.OpenICF.Common.ProtoBuf.SyncDelta.Types.SyncDeltaType.Update;
                             break;
                         case OBJ.SyncDeltaType.DELETE:
                             builder.DeltaType =
-                                Org.ForgeRock.OpenICF.Common.ProtoBuf.SyncDelta.Types.SyncDeltaType.DELETE;
+                                Org.ForgeRock.OpenICF.Common.ProtoBuf.SyncDelta.Types.SyncDeltaType.Delete;
                             break;
                     }
                     if (null != from.Uid)
@@ -1190,7 +1190,7 @@ public class AsyncRemoteLegacyConnectorInfoManager : ManagedAsyncConnectorInfoMa
             _handshakeMessage = new PRB.HandshakeMessage
             {
                 SessionId = Guid.NewGuid().ToString(),
-                ServerType = PRB.HandshakeMessage.Types.ServerType.DOTNET
+                ServerType = PRB.HandshakeMessage.Types.ServerType.Dotnet
             };
         }
 
@@ -1435,7 +1435,7 @@ public class AsyncRemoteLegacyConnectorInfoManager : ManagedAsyncConnectorInfoMa
             PRB.ControlRequest message)
         {
             PRB.ControlResponse builder = new PRB.ControlResponse();
-            if (message.InfoLevel.Contains(PRB.ControlRequest.Types.InfoLevel.CONNECTOR_INFO))
+            if (message.InfoLevel.Contains(PRB.ControlRequest.Types.InfoLevel.ConnectorInfo))
             {
                 if (_connectorInfoManager.ConnectorInfos.Any())
                 {
